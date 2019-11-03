@@ -8,6 +8,11 @@ export default class Card extends Component {
         buttonDonateClassName: 'radius'
     }
 
+    constructor(props) {
+        super(props);
+        this.btn = React.createRef();
+    }
+
     handleClick = event => {
         event.preventDefault();
         alert('Thank you for your donation!');
@@ -15,7 +20,7 @@ export default class Card extends Component {
             buttonDonateText: 'Já doou',
             buttonDonateClassName: 'radius redButton'
         });
-        this.btn.setAttribute("disabled", "disabled");
+        this.btn.current.setAttribute("disabled", "disabled");
     }
 
     render() {
@@ -39,7 +44,7 @@ export default class Card extends Component {
                 </div>
                 <div className="donate">
                     <div>$50.000 <span>doados</span></div>
-                    <button ref={btn => { this.btn = btn; }} className={buttonDonateClassName} onClick={(e) => this.handleClick(e)}>{buttonDonateText}</button>
+                    <button ref={this.btn} className={buttonDonateClassName} onClick={(e) => this.handleClick(e)}>{buttonDonateText}</button>
                 </div>
                 <div className="call">
                     <div>(<span itemprop="telephone">+351 916 083 075</span>) LIGAR</div>
